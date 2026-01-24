@@ -1,0 +1,64 @@
+.ProseMirror {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+    table-layout: fixed;
+    pointer-events: auto;
+  }
+
+  th,
+  td {
+    border: 1px solid #d1d5db;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+    background: #ffffff;
+    word-break: break-word;
+
+    /* ✅ REQUIRED for CellSelection */
+    user-select: none;
+    cursor: default;
+  }
+
+  th {
+    background: #ffffff;
+    font-weight: 600;
+  }
+
+  tr:hover td {
+    background: #fbfbfb;
+  }
+
+  table.is-selected,
+  table:focus-within {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+
+  /* 🔥 ProseMirror cell selection */
+  td.ProseMirror-selectedcell,
+  th.ProseMirror-selectedcell {
+    background: #105583 !important;
+  }
+
+  td[colspan],
+  th[colspan] {
+    text-align: center;
+  }
+
+  tr:nth-child(odd) td {
+    background: #ffffff;
+  }
+
+  tr:nth-child(even) td {
+    background: #fbfbfb;
+  }
+
+  @media (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+}
