@@ -80,3 +80,19 @@ body,
     padding: 1rem 1.5rem 30vh;
   }
 }
+
+/* simple-editor.scss */
+
+/* Outline the currently selected block node */
+.ProseMirror-selectednode {
+  outline: 2px solid #3b82f6; // blue
+  outline-offset: 2px;
+}
+
+/* Optional: outline paragraphs on hover */
+.ProseMirror p:hover,
+.ProseMirror h1:hover,
+.ProseMirror h2:hover,
+.ProseMirror li:hover {
+  outline: 1px solid hsl(214, 74%, 82%);
+}
