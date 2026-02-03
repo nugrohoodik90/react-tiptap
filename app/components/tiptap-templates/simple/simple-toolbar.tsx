@@ -8,7 +8,6 @@ import {
 } from "~/components/tiptap-ui-primitive/toolbar"
 
 // --- Tiptap UI ---
-import { HeadingDropdownMenu } from "~/components/tiptap-ui/heading-dropdown-menu"
 import { ImageUploadButton } from "~/components/tiptap-ui/image-upload-button"
 import { ListDropdownMenu } from "~/components/tiptap-ui/list-dropdown-menu"
 import {
@@ -26,11 +25,10 @@ import { HighlighterIcon } from "~/components/tiptap-icons/highlighter-icon"
 import { LinkIcon } from "~/components/tiptap-icons/link-icon"
 
 // --- Components ---
-import { ThemeToggle } from "~/components/tiptap-templates/simple/theme-toggle"
 // --- Styles ---
 import "~/components/tiptap-templates/simple/simple-editor.scss"
 import type { Editor } from "@tiptap/react"
-import { TableDropdownMenu } from "~/components/tiptap-ui/tables/table-dropdown-menu"
+import { TextAlignButton } from "~/components/tiptap-ui/text-align-button"
 
 export const MainToolbarContent = ({
 	editor,
@@ -87,18 +85,14 @@ export const MainToolbarContent = ({
 
 			<ToolbarSeparator />
 
-			{/* <ToolbarGroup>
+			<ToolbarGroup>
         <TextAlignButton align="left" />
         <TextAlignButton align="center" />
         <TextAlignButton align="right" />
         <TextAlignButton align="justify" />
       </ToolbarGroup>  
 
-      <ToolbarSeparator /> */}
-
-			<ToolbarGroup>
-				<TableDropdownMenu editor={editor} />
-			</ToolbarGroup>
+      <ToolbarSeparator />
 
 			<ToolbarGroup>
 				<ImageUploadButton text="Add" />
@@ -107,10 +101,6 @@ export const MainToolbarContent = ({
 			<Spacer />
 
 			{isMobile && <ToolbarSeparator />}
-
-			<ToolbarGroup>
-				<ThemeToggle />
-			</ToolbarGroup>
 		</>
 	)
 }

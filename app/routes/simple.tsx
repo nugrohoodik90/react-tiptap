@@ -14,7 +14,7 @@ export default function Page() {
 
   return (
     <div className="flex justify-center items-start w-full p-6 bg-gray-50 min-h-screen">
-      <div className="flex w-full max-w-6xl gap-6" style={{ maxHeight: '90vh' }}>
+      <div className="flex w-full max-w-8xl gap-6" style={{ maxHeight: '90vh' }}>
         {/* LEFT PANEL */}
         <div className="w-1/2 p-4 bg-white rounded-lg shadow-sm border border-gray-200 overflow-auto">
           <h2 className="text-lg font-semibold mb-3">Editor Output (JSON)</h2>

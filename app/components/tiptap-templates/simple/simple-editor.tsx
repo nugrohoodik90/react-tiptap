@@ -13,9 +13,7 @@ import { Highlight } from "@tiptap/extension-highlight"
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { Gapcursor } from "@tiptap/extensions"
-import { TableKit } from "@tiptap/extension-table"
 import UniqueID from "@tiptap/extension-unique-id"
-import DragHandle from "@tiptap/extension-drag-handle-react"
 
 // --- Custom Nodes ---
 import { ImageUploadNode } from "~/components/tiptap-node/image-upload-node/image-upload-node-extension"
@@ -43,15 +41,11 @@ import { useCursorVisibility } from "~/hooks/use-cursor-visibility"
 // --- Lib ---
 import { handleImageUpload, MAX_FILE_SIZE } from "~/lib/tiptap-utils"
 
-// --- Constants ---
-const NESTED_CONFIG = { edgeDetection: { threshold: -16 } }
-
 export const SimpleEditor: FC<{ data: Content; onChange?: (content: Content) => void }> = ({
   data,
   onChange,
 }) => {
   const [mounted, setMounted] = useState(false)
-  const [nested, setNested] = useState(true)
   const toolbarRef = useRef<HTMLDivElement>(null)
 
   const isMobile = useIsBreakpoint()
@@ -72,13 +66,12 @@ export const SimpleEditor: FC<{ data: Content; onChange?: (content: Content) => 
     extensions: [
       StarterKit.configure({
         horizontalRule: false,
-        link: { openOnClick: false, enableClickSelection: true },
+        link: { openOnClick: false, enableClickSelection: false},
       }),
       HorizontalRule,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       TaskList,
       TaskItem.configure({ nested: true }),
-      TableKit.configure({ table: { resizable: true } }),
       Gapcursor,
       Highlight.configure({ multicolor: true }),
       Image,
@@ -144,12 +137,6 @@ export const SimpleEditor: FC<{ data: Content; onChange?: (content: Content) => 
 
   if (!mounted || !editor) return null
 
-  // ------------------------
-  // Helpers
-  // ------------------------
-  const toggleEditable = () => editor.setEditable(!editor.isEditable)
-  const toggleNested = () => setNested((prev) => !prev)
-
   return (
     <div className="simple-editor-wrapper">
       <EditorContext.Provider value={{ editor }}>
@@ -168,10 +155,6 @@ export const SimpleEditor: FC<{ data: Content; onChange?: (content: Content) => 
             />
           )}
         </Toolbar>
-
-        <DragHandle editor={editor} nested={nested ? NESTED_CONFIG : false}>
-          <div className="custom-drag-handle" />
-        </DragHandle>
 
         <EditorContent editor={editor} role="presentation" className="simple-editor-content" />
       </EditorContext.Provider>
