@@ -14,6 +14,10 @@ import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { Gapcursor } from "@tiptap/extensions"
 import UniqueID from "@tiptap/extension-unique-id"
+import { Table } from "@tiptap/extension-table"
+import { TableRow } from "@tiptap/extension-table-row"
+import { TableCell } from "@tiptap/extension-table-cell"
+import { TableHeader } from "@tiptap/extension-table-header"
 
 // --- Custom Nodes ---
 import { ImageUploadNode } from "~/components/tiptap-node/image-upload-node/image-upload-node-extension"
@@ -37,6 +41,7 @@ import { MainToolbarContent, MobileToolbarContent } from "./simple-toolbar"
 import { useIsBreakpoint } from "~/hooks/use-is-breakpoint"
 import { useWindowSize } from "~/hooks/use-window-size"
 import { useCursorVisibility } from "~/hooks/use-cursor-visibility"
+import { useTable } from "~/components/tiptap-ui/tables/use-tables"
 
 // --- Lib ---
 import { handleImageUpload, MAX_FILE_SIZE } from "~/lib/tiptap-utils"
@@ -85,6 +90,12 @@ export const SimpleEditor: FC<{ data: Content; onChange?: (content: Content) => 
         upload: handleImageUpload,
         onError: (error) => console.error("Upload failed:", error),
       }),
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       UniqueID.configure({
         types: [
           "heading",
@@ -115,6 +126,11 @@ export const SimpleEditor: FC<{ data: Content; onChange?: (content: Content) => 
   useEffect(() => {
     if (!isMobile && mobileView !== "main") setMobileView("main")
   }, [isMobile, mobileView])
+
+  // ------------------------
+  // Table hook
+  // ------------------------
+  const { state: tableState, actions: tableActions } = useTable(editor)
 
   // ------------------------
   // Cursor overlay rect

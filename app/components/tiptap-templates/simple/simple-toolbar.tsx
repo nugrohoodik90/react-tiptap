@@ -18,6 +18,7 @@ import {
 } from "~/components/tiptap-ui/link-popover"
 import { MarkButton } from "~/components/tiptap-ui/mark-button"
 import { UndoRedoButton } from "~/components/tiptap-ui/undo-redo-button"
+import { TableDropdownMenu } from "~/components/tiptap-ui/tables/table-dropdown-menu"
 
 // --- Icons ---
 import { ArrowLeftIcon } from "~/components/tiptap-icons/arrow-left-icon"
@@ -32,10 +33,10 @@ import { TextAlignButton } from "~/components/tiptap-ui/text-align-button"
 
 export const MainToolbarContent = ({
 	editor,
-	isMobile,
+	isMobile
 }: {
-	onHighlighterClick: () => void
-	onLinkClick: () => void
+	onHighlighterClick?: () => void
+	onLinkClick?: () => void
 	editor: Editor | null
 	isMobile: boolean
 }) => {
@@ -96,6 +97,12 @@ export const MainToolbarContent = ({
 
 			<ToolbarGroup>
 				<ImageUploadButton text="Add" />
+			</ToolbarGroup>
+
+			<ToolbarSeparator />
+
+			<ToolbarGroup>
+				<TableDropdownMenu editor={editor} />
 			</ToolbarGroup>
 
 			<Spacer />
