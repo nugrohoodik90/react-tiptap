@@ -1,5 +1,7 @@
-import { TiptapTableEditor } from "~/welcome/welcome";
+import { TiptapEditor } from "~/welcome/welcome";
 import type { Route } from "./+types/home";
+import { TiptapEditorProvider } from "~/welcome/provider";
+import { TableToolbar } from "~/welcome/toolbar";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +11,10 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <TiptapTableEditor />;
+  return (
+    <TiptapEditorProvider>
+      <TableToolbar />
+      <TiptapEditor />
+    </TiptapEditorProvider>
+  ) 
 }
