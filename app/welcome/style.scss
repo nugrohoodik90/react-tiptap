@@ -70,3 +70,56 @@
     cursor: col-resize;
   }
 }
+
+.tt-toolbar {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.tt-btn {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tt-btn:hover {
+  background: #f3f4f6;
+}
+
+.tt-btn.is-active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.tt-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tt-btn.danger {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.tt-btn.danger:hover {
+  background: #fecaca;
+}
+
+.divider {
+  width: 1px;
+  margin: 0 4px;
+  background: #e5e7eb;
+}
