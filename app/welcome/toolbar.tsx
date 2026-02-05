@@ -17,6 +17,8 @@ export const TableToolbar = ({ editor }: { editor: Editor | null }) => {
       align: editor?.getAttributes('paragraph').textAlign,
       superscript: editor?.isActive('superscript'),
       subscript: editor?.isActive('subscript'),
+      bulletList: editor?.isActive('bulletList'),
+      orderedList: editor?.isActive('orderedList'),
     }),
   })
 
@@ -98,6 +100,24 @@ export const TableToolbar = ({ editor }: { editor: Editor | null }) => {
         title="Subscript"
       >
         X<sub>2</sub>
+      </button>
+      <span className="divider" />
+      <span className="divider" />
+
+      <button
+        className={btn(editorState?.bulletList)}
+        onClick={actions.bulletList}
+        title="Bullet List"
+      >
+        ••
+      </button>
+
+      <button
+        className={btn(editorState?.orderedList)}
+        onClick={actions.orderedList}
+        title="Ordered List"
+      >
+        1.
       </button>
       <span className="divider" />
 

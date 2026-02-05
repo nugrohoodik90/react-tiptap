@@ -13,6 +13,7 @@ import Subscript from '@tiptap/extension-subscript'
 import type { FC } from 'react'
 import UniqueID from '@tiptap/extension-unique-id'
 import { Gapcursor } from '@tiptap/extensions'
+import { BulletList, ListItem, OrderedList } from '@tiptap/extension-list'
 
 export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Content) => void }> = ({ data, onChange }) => {
   const editor = useEditor({
@@ -26,31 +27,53 @@ export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Cont
       },
     },
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        orderedList: false,
+        bulletList: false,
+        listItem: false,
+      }),
+
+      OrderedList.configure({
+        keepMarks: true,
+        keepAttributes: false,
+      }),
+
+      BulletList.configure({
+        keepMarks: true,
+        keepAttributes: false,
+      }),
+
+      ListItem,
+
       Superscript,
       Subscript,
       Gapcursor,
+
       Table.configure({ resizable: true }),
-      TextAlign.configure({
-        types: ['heading', 'paragraph'],
-      }),
-      UniqueID.configure({
-        types: [
-          "heading",
-          "paragraph",
-          "image",
-          "orderedList",
-          "taskItem",
-          "table",
-          "tableRow",
-          "tableCell",
-        ],
-      }),
       TableRow,
       TableHeader,
       TableCell,
-      Typography
-    ],
+
+      TextAlign.configure({
+        types: ['heading', 'paragraph'], // ⚠️ jangan listItem
+      }),
+
+      UniqueID.configure({
+        types: [
+          'heading',
+          'paragraph',
+          'orderedList',
+          'bulletList',
+          'listItem',
+          'table',
+          'tableRow',
+          'tableCell',
+        ],
+      }),
+
+      Typography,
+    ]
+    ,
     content: data ?? '<p>Hello World!</p>',
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
