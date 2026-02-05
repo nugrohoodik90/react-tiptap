@@ -97,6 +97,7 @@
 }
 
 .tt-btn {
+  margin: 0.25rem;
   min-width: 28px;
   height: 28px;
   padding: 0 6px;
@@ -136,7 +137,38 @@
 }
 
 .divider {
-  width: 1px;
+  width: 2px;
   margin: 0 4px;
-  background: #e5e7eb;
+  background: #db2727;
+}
+
+.drag-handle {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: baseline;
+  cursor: grab;
+  color: #4a4b4b;
+  user-select: none;
+}
+
+.drag-handle:hover {
+  color: #7b7b7c;
+}
+
+.ProseMirror {
+  position: relative;
+}
+
+.ProseMirror > * {
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.is-dragging {
+  background: rgba(37, 99, 235, 0.12);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.25);
 }

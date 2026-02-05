@@ -16,7 +16,7 @@
     "@react-router/serve": "7.12.0",
     "@tiptap/core": "^3.16.0",
     "@tiptap/extension-collaboration": "^3.17.0",
-    "@tiptap/extension-drag-handle": "^3.17.0",
+    "@tiptap/extension-drag-handle": "^3.19.0",
     "@tiptap/extension-drag-handle-react": "^3.17.0",
     "@tiptap/extension-highlight": "^3.16.0",
     "@tiptap/extension-horizontal-rule": "^3.16.0",

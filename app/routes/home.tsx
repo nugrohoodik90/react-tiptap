@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const [contentState, setContentState] = useState<Content>(content as Content)
+  const [contentState, setContentState] = useState<Content>({ type: "doc", content: [] } as Content)
 
 
   const handleContentChange = (data: Content) => {
@@ -33,7 +33,7 @@ export default function Home() {
         {/* RIGHT PANEL */}
         <div className="w-1/2 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <h2 className="text-lg font-semibold mb-3">Editor</h2>
-          <TiptapEditorProvider data={content as Content} onChange={handleContentChange}/>
+          <TiptapEditorProvider data={{ type: "doc"}} onChange={handleContentChange}/>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import Subscript from '@tiptap/extension-subscript'
 import type { FC } from 'react'
 import UniqueID from '@tiptap/extension-unique-id'
 import { Gapcursor } from '@tiptap/extensions'
+import DragHandle from '@tiptap/extension-drag-handle'
 import { BulletList, ListItem, OrderedList } from '@tiptap/extension-list'
 
 export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Content) => void }> = ({ data, onChange }) => {
@@ -31,31 +32,43 @@ export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Cont
         orderedList: false,
         bulletList: false,
         listItem: false,
+        horizontalRule: false,
+        link: { openOnClick: false, enableClickSelection: false },
       }),
-
       OrderedList.configure({
         keepMarks: true,
         keepAttributes: false,
       }),
-
       BulletList.configure({
         keepMarks: true,
         keepAttributes: false,
       }),
+      DragHandle.configure({
+        render: () => {
+          const el = document.createElement('div')
+          el.className = 'drag-handle'
+          el.innerHTML = '⋮⋮'
 
+          const wrapper = document.createElement('div')
+          wrapper.appendChild(el)
+
+
+          return wrapper
+        },
+      }),
       ListItem,
-
       Superscript,
       Subscript,
       Gapcursor,
-
       Table.configure({ resizable: true }),
       TableRow,
       TableHeader,
       TableCell,
 
       TextAlign.configure({
-        types: ['heading', 'paragraph'], // ⚠️ jangan listItem
+        types: ['heading', 'paragraph'],
+        defaultAlignment: 'left',
+        alignments: ['left', 'center', 'right', 'justify'],
       }),
 
       UniqueID.configure({
