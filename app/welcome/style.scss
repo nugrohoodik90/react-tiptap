@@ -10,6 +10,8 @@
     margin-top: 0;
   }
 
+  padding: 1rem 1rem 30vh;
+
   table {
     border-collapse: collapse;
     margin: 0;
@@ -26,7 +28,7 @@
       position: relative;
       vertical-align: top;
 
-      > * {
+      >* {
         margin-bottom: 0;
       }
     }
@@ -60,8 +62,25 @@
     }
   }
 
+  ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  li {
+    margin: 0.25rem 0;
+  }
+
+
   .tableWrapper {
-    margin: 1.5rem 0;
+    margin: 0rem 0;
     overflow-x: auto;
   }
 
@@ -72,8 +91,6 @@
 }
 
 .tt-toolbar {
-  display: flex;
-  gap: 4px;
   padding: 6px;
   border-bottom: 1px solid #e5e7eb;
   background: #f9fafb;
