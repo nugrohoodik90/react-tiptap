@@ -129,7 +129,7 @@ export const TableToolbar = ({ editor, onUploadImage }: { editor: Editor | null,
       <button className="tt-btn" onClick={actions.mergeCells}>Merge</button>
       <button className="tt-btn" onClick={actions.splitCell}>Splite</button>
       <button className="tt-btn danger" onClick={actions.deleteTable}>Delete Table</button>
-      <button type="button" onClick={onUploadImage}>
+      <button className="tt-btn" type="button" onClick={onUploadImage}>
         Upload Image
       </button>
     </div>

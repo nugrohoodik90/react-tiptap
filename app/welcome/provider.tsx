@@ -120,9 +120,9 @@ export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Cont
   if (!editor) return null
 
   return (
-    <>
+    <div>
       <TableToolbar editor={editor} onUploadImage={handleUploadImage}/>
       <EditorContent editor={editor} />
-    </>
+    </div>
   )
 }
