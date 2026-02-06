@@ -78,8 +78,6 @@ export const useTiptap = ({ editor }: { editor: Editor | null }) => {
           .run()
       ),
 
-
-
     alignLeft: () => runCommand(e => e.chain().focus().setTextAlign('left').run()),
     alignCenter: () => runCommand(e => e.chain().focus().setTextAlign('center').run()),
     alignRight: () => runCommand(e => e.chain().focus().setTextAlign('right').run()),

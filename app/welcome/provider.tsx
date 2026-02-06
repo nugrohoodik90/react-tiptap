@@ -15,6 +15,8 @@ import UniqueID from '@tiptap/extension-unique-id'
 import { Gapcursor } from '@tiptap/extensions'
 import DragHandle from '@tiptap/extension-drag-handle'
 import { BulletList, ListItem, OrderedList } from '@tiptap/extension-list'
+import { Image } from "@tiptap/extension-image"
+import { uploadImage } from './lib/upload-image'
 
 export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Content) => void }> = ({ data, onChange }) => {
   const editor = useEditor({
@@ -56,6 +58,10 @@ export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Cont
           return wrapper
         },
       }),
+      Image.configure({
+        inline: false,
+        allowBase64: false,
+      }),
       ListItem,
       Superscript,
       Subscript,
@@ -94,11 +100,28 @@ export const TiptapEditorProvider: FC<{ data: Content; onChange?: (content: Cont
     },
   })
 
+  const handleUploadImage = async () => {
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.accept = 'image/*'
+
+  input.onchange = async () => {
+    const file = input.files?.[0]
+    if (!file) return
+
+    const url = await uploadImage(file)
+
+    editor?.chain().focus().setImage({ src: url, width: 400, height: 300, alt: 'image', title: 'test' }).run()
+  }
+
+  input.click()
+}
+
   if (!editor) return null
 
   return (
     <>
-      <TableToolbar editor={editor} />
+      <TableToolbar editor={editor} onUploadImage={handleUploadImage}/>
       <EditorContent editor={editor} />
     </>
   )
